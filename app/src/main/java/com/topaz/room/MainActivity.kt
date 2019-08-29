@@ -1,6 +1,5 @@
 package com.topaz.room
 
-import android.arch.persistence.room.Room
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,10 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val db = Room.databaseBuilder(
-            applicationContext, AppDatabase::class.java,
-            "Employee.db"
-        ).allowMainThreadQueries().build()
+        val db = AppDatabase.getInstance(this)
         val dao = db.dao
         dao.insert(Employee(1, "Art", 555))
 
