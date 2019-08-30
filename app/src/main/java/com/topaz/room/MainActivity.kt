@@ -21,12 +21,8 @@ class MainActivity : AppCompatActivity() {
         dao.insert(Employee(5, "Art", 555))
 
         CoroutineScope(Dispatchers.Default).launch {
-            dao.getAll().observe(this@MainActivity, object : Observer<List<Employee>> {
-                override fun onChanged(t: List<Employee>?) {
-                    text_view.text = t?.size.toString()
-                }
-
-            })
+            dao.getAll().observe(this@MainActivity,
+                Observer<List<Employee>> { t -> text_view.text = t?.size.toString() })
         }
     }
 }
